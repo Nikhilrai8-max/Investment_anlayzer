@@ -1,0 +1,8 @@
+export default function FinancialCard({ financialAnalysis }) {
+  return (
+    <div className="card p-6">
+      <h3 className="text-lg font-semibold text-white">Financial Analysis</h3>
+      <p className="mt-4 text-slate-300 whitespace-pre-line">{financialAnalysis?.financialSummary || 'Financial assessment will be shown once available.'}</p>
+    </div>
+  );
+}
