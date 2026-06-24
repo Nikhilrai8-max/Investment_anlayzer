@@ -88,7 +88,6 @@ News articles:
 ${newsArticles.map((item, index) => `${index + 1}. Title: ${item.title}\nSource: ${item.source?.name || item.source || item.publisher}\nPublished: ${item.publishedAt || item.pubDate}\nUrl: ${item.url || item.link}\nDescription: ${item.description || item.summary}\n`).join('\n')}
 
 Return JSON with keys: newsScore, newsSummary, positiveCatalysts, negativeCatalysts.`;
-`;
 }
 
 function buildOpinionPrompt(company, priorAnalysis, tone) {
@@ -100,7 +99,6 @@ ${JSON.stringify(priorAnalysis, null, 2)}
 Provide top 5 reasons in list form, a concise confidence score from 0-100, and a short explanation.
 
 Output JSON with keys: ${tone === 'Bull' ? 'bullReasons, confidence, bullSummary' : 'bearReasons, confidence, bearSummary'}.`;
-`;
 }
 
 function buildRiskPrompt(company, priorAnalysis) {
@@ -116,7 +114,6 @@ Evaluate:
 Provide a risk assessment and a numeric risk score from 0-100 where higher means greater risk.
 
 Output JSON with keys: riskScore, riskSummary, riskDrivers.`;
-`;
 }
 
 function buildCommitteePrompt(company, state) {
@@ -133,7 +130,6 @@ Based on all available information, deliver a final recommendation in JSON with 
 
 Use the following state:
 ${JSON.stringify(state, null, 2)}`;
-`;
 }
 
 function safeParseJson(text) {

@@ -1,38 +1,31 @@
-import { createGraph } from 'langgraph';
-
+// Lightweight local orchestrator used instead of an external `langgraph` package.
+// Runs agents sequentially and returns the final state.
 export function buildInvestmentGraph({ executeAgent }) {
-  return createGraph()
-    .addState('company', null)
-    .addState('companyInfo', null)
-    .addState('financialData', null)
-    .addState('newsData', null)
-    .addState('financialAnalysis', null)
-    .addState('newsAnalysis', null)
-    .addState('bullCase', null)
-    .addState('bearCase', null)
-    .addState('riskAnalysis', null)
-    .addState('finalDecision', null)
-    .addState('transcript', [])
-    .addState('sources', [])
-    .addNode('researchAgent', async (state) => {
-      return executeAgent('Research Agent', state);
-    })
-    .addNode('financialAgent', async (state) => {
-      return executeAgent('Financial Agent', state);
-    })
-    .addNode('newsAgent', async (state) => {
-      return executeAgent('News Agent', state);
-    })
-    .addNode('bullAgent', async (state) => {
-      return executeAgent('Bull Analyst', state);
-    })
-    .addNode('bearAgent', async (state) => {
-      return executeAgent('Bear Analyst', state);
-    })
-    .addNode('riskAgent', async (state) => {
-      return executeAgent('Risk Analyst', state);
-    })
-    .addNode('committeeAgent', async (state) => {
-      return executeAgent('Investment Committee', state);
-    });
+  const nodes = [
+    'Research Agent',
+    'Financial Agent',
+    'News Agent',
+    'Bull Analyst',
+    'Bear Analyst',
+    'Risk Analyst',
+    'Investment Committee'
+  ];
+
+  return {
+    async run(initialState) {
+      let state = initialState;
+      for (const agentName of nodes) {
+        try {
+          // each agent is expected to update the shared `state` object
+          const result = await executeAgent(agentName, state);
+          if (result && typeof result === 'object') {
+            state = result;
+          }
+        } catch (err) {
+          console.error(`Error executing agent ${agentName}:`, err);
+        }
+      }
+      return state;
+    }
+  };
 }

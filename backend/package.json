@@ -16,8 +16,7 @@
     "pdfkit": "^0.13.0",
     "socket.io": "^4.7.2",
     "zod": "^3.22.2",
-    "langchain": "^0.1.0",
-    "langgraph": "^0.1.0"
+    "@langchain/langgraph": "latest"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
