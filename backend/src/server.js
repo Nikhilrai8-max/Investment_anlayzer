@@ -28,6 +28,15 @@ app.get('/api/health', (req, res) => {
 });
 
 const PORT = process.env.PORT || 4000;
+server.on('error', (error) => {
+  if (error.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use. Close the process using it or set a different PORT in your environment variables.`);
+  } else {
+    console.error('Server error:', error);
+  }
+  process.exit(1);
+});
+
 server.listen(PORT, () => {
   console.log(`AlphaLens backend listening on port ${PORT}`);
 });

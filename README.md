@@ -18,25 +18,8 @@ AlphaLens AI is a production-ready multi-agent investment research platform. Ana
 - Backend: Node.js, Express, Socket.IO, LangGraph, Groq API
 - Data Sources: Financial Modeling Prep, NewsAPI, Yahoo Finance fallback
 
-## Repository Structure
 
-- `backend/`
-  - `src/server.js`
-  - `src/routes/research.route.js`
-  - `src/controllers/research.controller.js`
-  - `src/services/finance.service.js`
-  - `src/services/news.service.js`
-  - `src/config/llm.js`
-  - `src/graph/investment.graph.js`
-  - `src/utils/transcript.js`
-  - `src/socket.js`
 
-- `frontend/`
-  - `src/App.jsx`
-  - `src/pages/Dashboard.jsx`
-  - `src/components/*`
-  - `src/services/api.js`
-  - `src/hooks/useResearch.js`
 
 ## Environment Setup
 
@@ -74,11 +57,6 @@ npm install
 npm run dev
 ```
 
-## Deployment Guide
-
-- Frontend is deployable to Vercel
-- Backend is deployable to Railway / Render / any Node.js host
-- Ensure environment variables are configured in the target environment
 
 ## API Endpoints
 
